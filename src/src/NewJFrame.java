@@ -5,6 +5,10 @@
  */
 package src;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Rectangle;
+import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -28,7 +32,17 @@ public class NewJFrame extends javax.swing.JFrame {
      * Creates new form NewJFrame
      */
     public NewJFrame() {
+        
+        
+            this.setAlwaysOnTop(true);
+        this.setResizable(true);
+        this.setVisible(true);
+        
         initComponents();
+           Toolkit tk=Toolkit.getDefaultToolkit();
+        int xSize=(int)tk.getScreenSize().getWidth();
+        int ySize=(int)tk.getScreenSize().getHeight();
+        this.setSize(xSize,ySize);
           searchAndFillTable();
     }
 
@@ -147,19 +161,16 @@ public class NewJFrame extends javax.swing.JFrame {
                                     .addComponent(item)
                                     .addComponent(dprice, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
                                     .addComponent(sprice))))
+                        .addGap(70, 70, 70)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(70, 70, 70)
                                 .addComponent(jLabel4)
                                 .addGap(99, 99, 99)
                                 .addComponent(search_item, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(101, 101, 101)
-                                .addComponent(jButton3)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(78, 78, 78)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)))))
-                .addGap(72, 72, 72))
+                                .addComponent(jButton3))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
+                .addContainerGap(223, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,9 +200,9 @@ public class NewJFrame extends javax.swing.JFrame {
                             .addComponent(jButton4)
                             .addComponent(jButton2)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
+                        .addGap(48, 48, 48)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(165, Short.MAX_VALUE))
+                .addContainerGap(157, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -208,6 +219,49 @@ public class NewJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        new Main().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void search_itemKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_search_itemKeyReleased
+        // TODO add your handling code here:
+        searchAndFillTable();
+    }//GEN-LAST:event_search_itemKeyReleased
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        clearM();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+
+        Items itms=new Items(item.getText(),Double.parseDouble(dprice.getText()),Double.parseDouble(sprice.getText()));
+
+        try {
+            Database db=Connection.openConnection(myDb);
+
+            ArrayList<Items> itmDetails=  (ArrayList<Items> )db.getList("Items");
+
+            if(itmDetails==null){
+                itmDetails=new ArrayList<>();
+                db.addList("Items", itmDetails);
+            }
+            itmDetails.add(itms);
+            Connection.save();
+
+        } catch (IOException ex) {
+            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        searchAndFillTable();
+        clearM();
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     
     private void searchAndFillTable(){
     
@@ -217,12 +271,13 @@ public class NewJFrame extends javax.swing.JFrame {
             
             DefaultTableModel dftm=(DefaultTableModel)jTable1.getModel();
             dftm.setRowCount(0);
-            JTable table = new JTable();
-            table.setModel(dftm);
-            table.getColumn("Edit").setCellRenderer(new ButtonRenderer());
-            table.getColumn("Edit").setCellEditor(new ButtonEditor(new JCheckBox()));
+        
+        
+            jTable1.setModel(dftm);
+            jTable1.getColumn("Edit").setCellRenderer(new ButtonRenderer());
+            jTable1.getColumn("Edit").setCellEditor(new ButtonEditor(new JCheckBox()));
  
-            
+         
             
             Database db=Connection.openConnection(myDb);
           
@@ -247,49 +302,6 @@ public class NewJFrame extends javax.swing.JFrame {
     
     
     static File myDb=new File("myDb");
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-   
-        Items itms=new Items(item.getText(),Double.parseDouble(dprice.getText()),Double.parseDouble(sprice.getText()));
-        
-        try {
-            Database db=Connection.openConnection(myDb);
-          
-            ArrayList<Items> itmDetails=  (ArrayList<Items> )db.getList("Items");
-            
-            if(itmDetails==null){
-                itmDetails=new ArrayList<>();
-                db.addList("Items", itmDetails);
-            }
-            itmDetails.add(itms);
-            Connection.save(); 
-            
-        } catch (IOException ex) {
-            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        searchAndFillTable();
-        clearM();
-         
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void search_itemKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_search_itemKeyReleased
-        // TODO add your handling code here:
-        searchAndFillTable();
-    }//GEN-LAST:event_search_itemKeyReleased
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        clearM();
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-             new Main().setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jButton4ActionPerformed
-
     private void clearM(){
         item.setText("");
         dprice.setText("");

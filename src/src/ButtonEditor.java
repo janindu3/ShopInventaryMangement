@@ -6,13 +6,18 @@
 package src;
 
 import java.awt.Component;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 
 /**
  *
@@ -46,6 +51,7 @@ class ButtonEditor extends DefaultCellEditor {
             button.setForeground(table.getForeground());
             button.setBackground(table.getBackground());
         }
+        
         label = (value == null) ? "" : value.toString();
         button.setText(label);
         isPushed = true;
@@ -55,7 +61,18 @@ class ButtonEditor extends DefaultCellEditor {
     @Override
     public Object getCellEditorValue() {
         if (isPushed) {
-            JOptionPane.showMessageDialog(button, label + ": Ouch!");
+            JTextField filed1=new JTextField("");
+              JTextField filed2=new JTextField("");
+              
+             Object[] fields = {
+                "field1", filed1,
+                "field2", filed2
+            };
+            
+            JOptionPane.showConfirmDialog(button, fields + ": Ouch!");
+
+   
+
         }
         isPushed = false;
         return label;
