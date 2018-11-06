@@ -61,15 +61,24 @@ class ButtonEditor extends DefaultCellEditor {
     @Override
     public Object getCellEditorValue() {
         if (isPushed) {
-            JTextField filed1=new JTextField("");
-              JTextField filed2=new JTextField("");
+            
+            NewJFrame mm= new NewJFrame();
+        
+                int selectedRowIndex = mm.kk.getSelectedRow();
+            
+         
+                
+            JTextField filed1 = new JTextField("");
+            JTextField filed2 = new JTextField("");
+            JTextField filed3 = new JTextField("");
               
              Object[] fields = {
-                "field1", filed1,
-                "field2", filed2
+                "Name", filed1,
+                "Distribute Price", filed2,
+                "Sale Price", filed3
             };
             
-            JOptionPane.showConfirmDialog(button, fields + ": Ouch!");
+            JOptionPane.showConfirmDialog(button, fields,"Update values",JOptionPane.OK_CANCEL_OPTION);
 
    
 

@@ -5,10 +5,10 @@
  */
 package src;
 
-import java.awt.Dimension;
+import static com.sun.javafx.css.SizeUnits.PC;
 import java.awt.GridBagConstraints;
 import java.awt.Toolkit;
-import javax.swing.JFrame;
+import javax.swing.UIManager;
 
 /**
  *
@@ -21,7 +21,7 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         
-        
+      
     
         this.setAlwaysOnTop(true);
         this.setResizable(true);
@@ -42,6 +42,8 @@ public class Main extends javax.swing.JFrame {
         int xSize=(int)tk.getScreenSize().getWidth();
         int ySize=(int)tk.getScreenSize().getHeight();
         this.setSize(xSize,ySize);
+        
+     
         
     }
 
@@ -154,7 +156,19 @@ public class Main extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-
+      try {
+            //here you can put the selected theme class name in JTattoo
+            UIManager.setLookAndFeel("com.jtattoo.plaf.aero.AeroLookAndFeel");
+ 
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
