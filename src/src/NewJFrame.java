@@ -26,6 +26,7 @@ import jo.Database;
 import java.awt.event.ActionListener; 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.JPanel;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -38,6 +39,7 @@ public class NewJFrame extends javax.swing.JFrame{
     DefaultTableModel dftm;
     JTable kk;
     int id;
+    static JPanel lo;
 
     /**
      * Creates new form NewJFrame
@@ -49,6 +51,8 @@ public class NewJFrame extends javax.swing.JFrame{
         this.setVisible(true);
 
         initComponents();
+        
+        lo=jPanel1;
         
          errorMsg.setForeground(Color.RED);
           errorMsg.setVisible(false);
@@ -371,6 +375,11 @@ public class NewJFrame extends javax.swing.JFrame{
                 updateButtonMouseClicked(evt);
             }
         });
+        updateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateButtonActionPerformed(evt);
+            }
+        });
 
         deleteButton.setText("Delete");
 
@@ -428,16 +437,15 @@ public class NewJFrame extends javax.swing.JFrame{
                                 .addGap(26, 26, 26)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(sPriceError, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(deleteButton)
-                                    .addGap(33, 33, 33)
-                                    .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(item, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(dprice, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                                .addComponent(sprice, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(errorMsg)
-                                .addComponent(dPriceError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(deleteButton)
+                                .addGap(33, 33, 33)
+                                .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(item, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(dprice, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                            .addComponent(sprice, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(errorMsg)
+                            .addComponent(dPriceError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(62, 62, 62)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -588,6 +596,10 @@ public class NewJFrame extends javax.swing.JFrame{
 
     }//GEN-LAST:event_updateButtonMouseClicked
 
+    private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_updateButtonActionPerformed
+
     private void searchAndFillTable() {
 
 //               Items itms=new Items(item.getText(),Double.parseDouble(dprice.getText()),Double.parseDouble(sprice.getText()));
@@ -687,7 +699,6 @@ public class NewJFrame extends javax.swing.JFrame{
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel sPriceError;

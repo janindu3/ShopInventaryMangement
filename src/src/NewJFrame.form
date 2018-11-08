@@ -65,18 +65,16 @@
                           </Group>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="sPriceError" pref="155" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="deleteButton" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                                      <Component id="saveButton" min="-2" pref="58" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="item" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="dprice" alignment="1" pref="155" max="32767" attributes="0"/>
-                                  <Component id="sprice" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="errorMsg" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="dPriceError" alignment="0" max="32767" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Component id="deleteButton" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                                  <Component id="saveButton" min="-2" pref="58" max="-2" attributes="0"/>
                               </Group>
+                              <Component id="item" alignment="1" max="32767" attributes="0"/>
+                              <Component id="dprice" alignment="1" pref="155" max="32767" attributes="0"/>
+                              <Component id="sprice" alignment="1" max="32767" attributes="0"/>
+                              <Component id="errorMsg" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="dPriceError" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -226,6 +224,7 @@
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="updateButtonMouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updateButtonActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="deleteButton">
