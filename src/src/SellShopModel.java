@@ -14,6 +14,15 @@ import java.io.Serializable;
 public class SellShopModel implements Serializable{
     
     private static final long serialVersionUID = 1L;
+    private int uid;
+
+    public int getUid() {
+        return uid;
+    }
+
+    public void setUid(int uid) {
+        this.uid = uid;
+    }
     private  String ownername;
     private  String id;
     private  String paymentMethod;
@@ -31,7 +40,9 @@ public class SellShopModel implements Serializable{
         this.goodUnit = goodUnit;
     }
 
-    public SellShopModel(String ownername, String id, String paymentMethod, Long paymentAmount, String date, String goodName, Long goodAmount,String goodUnit) {
+    public SellShopModel(int uid,String ownername, String id, String paymentMethod, Long paymentAmount, String date, String goodName, Long goodAmount,String goodUnit) {
+        
+        this.uid=uid;
         this.ownername = ownername;
         this.id = id;
         this.paymentMethod = paymentMethod;

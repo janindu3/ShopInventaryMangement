@@ -113,7 +113,7 @@ public class SellToShop extends javax.swing.JFrame{
         bill_date = new com.toedter.calendar.JDateChooser();
         goodAmount = new javax.swing.JTextField();
         goodItem = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        saveButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         sell_shop_table = new javax.swing.JTable();
@@ -149,10 +149,10 @@ public class SellToShop extends javax.swing.JFrame{
             }
         });
 
-        jButton1.setText("Save");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        saveButton1.setText("Save");
+        saveButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                saveButton1ActionPerformed(evt);
             }
         });
 
@@ -232,7 +232,7 @@ public class SellToShop extends javax.swing.JFrame{
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(saveButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, goodNameLayout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -286,7 +286,7 @@ public class SellToShop extends javax.swing.JFrame{
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
                         .addGroup(goodNameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
+                            .addComponent(saveButton1)
                             .addComponent(jButton2)
                             .addComponent(jButton3)))
                     .addComponent(jScrollPane1))
@@ -339,12 +339,12 @@ public class SellToShop extends javax.swing.JFrame{
 
     File shopDb = new File("nn");
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void saveButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButton1ActionPerformed
 
         // TODO add your handling code here:
         String d1 = ((JTextField) bill_date.getDateEditor().getUiComponent()).getText();
 
-        SellShopModel sellShopModel = new SellShopModel(ownerName.getText(),
+        SellShopModel sellShopModel = new SellShopModel(4,ownerName.getText(),
                 ownerId.getText(), (String) paymentMethod.getSelectedItem(),
                 Long.parseLong(paymentAmount.getText()),
                 d1,
@@ -371,7 +371,7 @@ public class SellToShop extends javax.swing.JFrame{
         }
 
         searchAndFillTable();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_saveButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
@@ -449,7 +449,6 @@ public class SellToShop extends javax.swing.JFrame{
     private javax.swing.JComboBox<String> goodItem;
     private javax.swing.JPanel goodName;
     private javax.swing.JComboBox<String> good_unit;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
@@ -467,6 +466,7 @@ public class SellToShop extends javax.swing.JFrame{
     private javax.swing.JTextField paymentAmount;
     private javax.swing.JLabel paymentAmountValidation;
     private javax.swing.JComboBox<String> paymentMethod;
+    private javax.swing.JButton saveButton1;
     private javax.swing.JTable sell_shop_table;
     // End of variables declaration//GEN-END:variables
 

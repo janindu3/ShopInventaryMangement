@@ -151,7 +151,7 @@ public class NewJFrame extends javax.swing.JFrame{
                             id = 1;
                         }
 
-                        Items itms = new Items(id, item.getText(), Double.parseDouble(dprice.getText()), Double.parseDouble(sprice.getText()));
+                        Items itms = new Items(id, item.getText(), Double.parseDouble(dprice.getText()), Double.parseDouble(sprice.getText()),Double.parseDouble(sprice.getText()),item.getText());
 
                         ArrayList<Items> itmDetails = (ArrayList<Items>) db.getList("Items");
 
@@ -200,7 +200,7 @@ public class NewJFrame extends javax.swing.JFrame{
                             id = 1;
                         }
 
-                        Items itms = new Items(id, item.getText(), Double.parseDouble(dprice.getText()), Double.parseDouble(sprice.getText()));
+                        Items itms = new Items(id, item.getText(), Double.parseDouble(dprice.getText()), Double.parseDouble(sprice.getText()),Double.parseDouble(sprice.getText()),item.getText());
 
                         ArrayList<Items> itmDetails = (ArrayList<Items>) db.getList("Items");
 
@@ -226,49 +226,48 @@ public class NewJFrame extends javax.swing.JFrame{
         });
 
     }
-    
-    private  void validateInput() {
+
+    private void validateInput() {
         String text = item.getText();
-        String pattern="^([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])$";
+        String pattern = "^([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])$";
         Pattern r = Pattern.compile(pattern);
         Matcher m = r.matcher(text);
-        
-        
+
         if (text.length() == 0) {
             errorMsg.setText("Item name can not be empty");
             errorMsg.setVisible(true);
             saveButton.setEnabled(false);
         } else {
             errorMsg.setVisible(false);
-              saveButton.setEnabled(true);
+            saveButton.setEnabled(true);
         }
- 
+
     }
-    
-        private  void dPriceValidateInput() {
+
+    private void dPriceValidateInput() {
         String dpricetext = dprice.getText();
-        String pattern="[0-9]+([,.][0-9]{1,2})?";
+        String pattern = "[0-9]+([,.][0-9]{1,2})?";
         Pattern r = Pattern.compile(pattern);
         Matcher m = r.matcher(dpricetext);
-       
-         if (dpricetext.length() == 0) {
-             dPriceError.setText("This field can not be empty");
-             dPriceError.setForeground(Color.RED);
-             dPriceError.setVisible(true);
-             saveButton.setEnabled(false);
-         
-         }else if (m.matches()) {
-                
-                dPriceError.setVisible(false);
-                       saveButton.setEnabled(true);
-            } else {
-                
-                dPriceError.setText("Not a Valied format");
-                dPriceError.setForeground(Color.RED);
-                dPriceError.setVisible(true);
-                   saveButton.setEnabled(false);
-                
-            }
+
+        if (dpricetext.length() == 0) {
+            dPriceError.setText("This field can not be empty");
+            dPriceError.setForeground(Color.RED);
+            dPriceError.setVisible(true);
+            saveButton.setEnabled(false);
+
+        } else if (m.matches()) {
+
+            dPriceError.setVisible(false);
+            saveButton.setEnabled(true);
+        } else {
+
+            dPriceError.setText("Not a Valied format");
+            dPriceError.setForeground(Color.RED);
+            dPriceError.setVisible(true);
+            saveButton.setEnabled(false);
+
+        }
     }
 
     private void sPriceValidateInput() {
@@ -385,6 +384,11 @@ public class NewJFrame extends javax.swing.JFrame{
 
         jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        jScrollPane2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jScrollPane2MouseClicked(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -552,7 +556,7 @@ public class NewJFrame extends javax.swing.JFrame{
                 id = 1;
             }
 
-            Items itms = new Items(id, item.getText(), Double.parseDouble(dprice.getText()), Double.parseDouble(sprice.getText()));
+            Items itms = new Items(id, item.getText(), Double.parseDouble(dprice.getText()), Double.parseDouble(sprice.getText()),Double.parseDouble(sprice.getText()),item.getText());
 
             ArrayList<Items> itmDetails = (ArrayList<Items>) db.getList("Items");
 
@@ -599,6 +603,10 @@ public class NewJFrame extends javax.swing.JFrame{
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_updateButtonActionPerformed
+
+    private void jScrollPane2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jScrollPane2MouseClicked
 
     private void searchAndFillTable() {
 
