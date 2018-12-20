@@ -55,6 +55,7 @@ class ButtonEditor extends DefaultCellEditor {
         label = (value == null) ? "" : value.toString();
         button.setText(label);
         isPushed = true;
+        int x=10;
         return button;
     }
 
