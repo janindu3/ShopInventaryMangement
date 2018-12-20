@@ -29,7 +29,7 @@ public class SellShopModel implements Serializable{
     private  Long paymentAmount;
     private  String date;
     private  String goodName;
-    private Long goodAmount;
+    private Double goodAmount;
     private String goodUnit;
 
     public String getGoodUnit() {
@@ -40,7 +40,7 @@ public class SellShopModel implements Serializable{
         this.goodUnit = goodUnit;
     }
 
-    public SellShopModel(int uid,String ownername, String id, String paymentMethod, Long paymentAmount, String date, String goodName, Long goodAmount,String goodUnit) {
+    public SellShopModel(int uid,String ownername, String id, String paymentMethod, Long paymentAmount, String date, String goodName, Double goodAmount,String goodUnit) {
         
         this.uid=uid;
         this.ownername = ownername;
@@ -101,11 +101,11 @@ public class SellShopModel implements Serializable{
         this.goodName = goodName;
     }
 
-    public Long getGoodAmount() {
+    public Double getGoodAmount() {
         return goodAmount;
     }
 
-    public void setGoodAmount(Long goodAmount) {
+    public void setGoodAmount(Double goodAmount) {
         this.goodAmount = goodAmount;
     }
     

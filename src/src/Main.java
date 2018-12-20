@@ -48,11 +48,12 @@ public class Main extends javax.swing.JFrame {
     int id;
     int id1;
 
-    double todayRevenue, totalRevenue, todayCost, todayProfitFromCheck,todayProfitFromCash, totalProfitFromCheck,totalProfitFromCash = 0.0;
+    double todayRevenue, totalRevenue, todayCost, todayProfitFromCheck, todayProfitFromCash, totalProfitFromCheck, totalProfitFromCash = 0.0;
     double unitSalePrice, unitPerchasePrice;
 
-    boolean isProductExist=true;
+    boolean isProductExist = true;
     double availableAmount;
+
     /**
      * Creates new form NewJFrame1
      */
@@ -81,7 +82,7 @@ public class Main extends javax.swing.JFrame {
 
         goodAmountErrorMsg.setForeground(Color.RED);
         goodAmountErrorMsg.setVisible(true);
-        
+
         gAmountErrorMsg.setForeground(Color.RED);
         gAmountErrorMsg.setVisible(true);
 
@@ -120,7 +121,7 @@ public class Main extends javax.swing.JFrame {
                     dftm.setValueAt(item.getText(), i, 0);
                     dftm.setValueAt(dprice.getText(), i, 1);
                     dftm.setValueAt(sprice.getText(), i, 2);
-                    dftm.setValueAt(gAmount.getText()+" "+good_unit1.getSelectedItem(), i, 4);
+                    dftm.setValueAt(gAmount.getText() + " " + good_unit1.getSelectedItem(), i, 4);
 
                     try {
                         Database db = Connection.openConnection(myDb);
@@ -135,8 +136,8 @@ public class Main extends javax.swing.JFrame {
                             id = 1;
                         }
 
-                        Items itms = new Items(id, item.getText(), Double.parseDouble(dprice.getText()), Double.parseDouble(sprice.getText())
-                                ,Double.parseDouble(gAmount.getText()),(String) good_unit1.getSelectedItem());
+                        Items itms = new Items(id, item.getText(), Double.parseDouble(dprice.getText()), Double.parseDouble(sprice.getText()),
+                                Double.parseDouble(gAmount.getText()), (String) good_unit1.getSelectedItem());
 
                         ArrayList<Items> itmDetails = (ArrayList<Items>) db.getList("Items");
 
@@ -198,7 +199,7 @@ public class Main extends javax.swing.JFrame {
                                 Long.parseLong(paymentAmount.getText()),
                                 d1,
                                 (String) goodItem.getSelectedItem(),
-                                Long.parseLong(goodAmount.getText()), (String) good_unit.getSelectedItem());
+                                Double.parseDouble(goodAmount.getText()), (String) good_unit.getSelectedItem());
 
                         ArrayList<SellShopModel> itmDetails = (ArrayList<SellShopModel>) db.getList("ShopItems");
 
@@ -245,7 +246,7 @@ public class Main extends javax.swing.JFrame {
                             id = 1;
                         }
 
-                        Items itms = new Items(id, item.getText(), Double.parseDouble(dprice.getText()), Double.parseDouble(sprice.getText()),Double.parseDouble(gAmount.getText()),(String) good_unit1.getSelectedItem());
+                        Items itms = new Items(id, item.getText(), Double.parseDouble(dprice.getText()), Double.parseDouble(sprice.getText()), Double.parseDouble(gAmount.getText()), (String) good_unit1.getSelectedItem());
 
                         ArrayList<Items> itmDetails = (ArrayList<Items>) db.getList("Items");
 
@@ -301,7 +302,7 @@ public class Main extends javax.swing.JFrame {
                                 Long.parseLong(paymentAmount.getText()),
                                 d1,
                                 (String) goodItem.getSelectedItem(),
-                                Long.parseLong(goodAmount.getText()), (String) good_unit.getSelectedItem());
+                                Double.parseDouble(goodAmount.getText()), (String) good_unit.getSelectedItem());
 
                         ArrayList<SellShopModel> itmDetails = (ArrayList<SellShopModel>) db.getList("ShopItems");
 
@@ -355,15 +356,13 @@ public class Main extends javax.swing.JFrame {
 //        int xSize=(int)tk.getScreenSize().getWidth();
 //        int ySize=(int)tk.getScreenSize().getHeight();
 //        this.setSize(xSize,ySize);
-  
         Database db;
         try {
             db = Connection.openConnection(NewJFrame.myDb);
 
             ArrayList<Items> itmDetails = (ArrayList<Items>) db.getList("Items");
-           
 
-            if (itmDetails!=null) {
+            if (itmDetails != null) {
 
                 for (Items item : itmDetails) {
 
@@ -371,12 +370,12 @@ public class Main extends javax.swing.JFrame {
 
                 }
 
-            }else{
-            
+            } else {
+
                 System.out.println("no data");
-            
+
             }
-         
+
         } catch (IOException ex) {
             Logger.getLogger(SellToShop.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
@@ -444,7 +443,7 @@ public class Main extends javax.swing.JFrame {
                 sPriceValidateInput();
             }
         });
- 
+
         ownerName.getDocument().addDocumentListener(new DocumentListener() {
 
             @Override
@@ -464,8 +463,7 @@ public class Main extends javax.swing.JFrame {
                 ownerNamevalidateInput();
             }
         });
-          
-          
+
         ownerId.getDocument().addDocumentListener(new DocumentListener() {
 
             @Override
@@ -485,7 +483,6 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-             
         paymentAmount.getDocument().addDocumentListener(new DocumentListener() {
 
             @Override
@@ -504,9 +501,8 @@ public class Main extends javax.swing.JFrame {
                 paymentAmountValidateInput();
             }
         });
-        
-        
-          goodAmount.getDocument().addDocumentListener(new DocumentListener() {
+
+        goodAmount.getDocument().addDocumentListener(new DocumentListener() {
 
             @Override
             public void insertUpdate(DocumentEvent de) {
@@ -524,8 +520,8 @@ public class Main extends javax.swing.JFrame {
                 goodAmountValidateInput();
             }
         });
-          
-               gAmount.getDocument().addDocumentListener(new DocumentListener() {
+
+        gAmount.getDocument().addDocumentListener(new DocumentListener() {
 
             @Override
             public void insertUpdate(DocumentEvent de) {
@@ -555,8 +551,8 @@ public class Main extends javax.swing.JFrame {
         }
 
     }
-    
-     private void ownerNamevalidateInput() {
+
+    private void ownerNamevalidateInput() {
 
         String text = ownerName.getText();
 
@@ -588,9 +584,9 @@ public class Main extends javax.swing.JFrame {
 
         }
     }
-    
-       private void ownerIdValidateInput() {
-           
+
+    private void ownerIdValidateInput() {
+
         String ownerIdtext = ownerId.getText();
         String pattern = "^\\d{9}[V|v|x|X]$";
         Pattern r = Pattern.compile(pattern);
@@ -600,7 +596,7 @@ public class Main extends javax.swing.JFrame {
 
             ownerIdErrorMsg.setVisible(false);
             saveButton1.setEnabled(true);
-            
+
         } else if (ownerIdtext.equals("")) {
 
         } else {
@@ -612,9 +608,9 @@ public class Main extends javax.swing.JFrame {
 
         }
     }
-       
-          private void paymentAmountValidateInput() {
-           
+
+    private void paymentAmountValidateInput() {
+
         String paymentAmountext = paymentAmount.getText();
         String pattern = "(?<=\\s|^)\\d+(?=\\s|$)";
         Pattern r = Pattern.compile(pattern);
@@ -635,9 +631,9 @@ public class Main extends javax.swing.JFrame {
 
         }
     }
-          
-        private void goodAmountValidateInput() {
-           
+
+    private void goodAmountValidateInput() {
+
         String goodAmounttext = goodAmount.getText();
         String pattern = "[0-9]+([,.][0-9]{1,2})?";
         Pattern r = Pattern.compile(pattern);
@@ -666,7 +662,6 @@ public class Main extends javax.swing.JFrame {
 //        } catch (ClassNotFoundException ex) {
 //            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
 //        }
-
         if (m.matches()) {
 
             goodAmountErrorMsg.setVisible(false);
@@ -681,7 +676,7 @@ public class Main extends javax.swing.JFrame {
             saveButton1.setEnabled(false);
 
         }
-        
+
 //        if (!goodAmount.getText().equals("")) {
 //            if (availableAmount < Double.parseDouble(goodAmount.getText())) {
 //                goodAmountErrorMsg.setText("stock does not have enoush amount");
@@ -691,7 +686,7 @@ public class Main extends javax.swing.JFrame {
 //            }
 //        }
     }
- 
+
     private void gAmountValidateInput() {
 
         String gAmounttext = gAmount.getText();
@@ -1562,7 +1557,7 @@ public class Main extends javax.swing.JFrame {
             if (itmDetails != null) {
                 for (Items item : itmDetails) {
                     if (item.getItem().toLowerCase().startsWith(searchName.toLowerCase())) {
-                        dftm.addRow(new Object[]{item.getItem(), item.getDistributerPrice(), item.getSalePrice(), item.getId(),item.getgAmount()+" "+item.getGoodUnit()});
+                        dftm.addRow(new Object[]{item.getItem(), item.getDistributerPrice(), item.getSalePrice(), item.getId(), item.getgAmount() + " " + item.getGoodUnit()});
                     }
                 }
             }
@@ -1659,21 +1654,20 @@ public class Main extends javax.swing.JFrame {
                 id = 1;
             }
 
-            if (!item.getText().equals("") && !dprice.getText().equals("") && !sprice.getText().equals("")&&!gAmount.getText().equals("")) {
+            if (!item.getText().equals("") && !dprice.getText().equals("") && !sprice.getText().equals("") && !gAmount.getText().equals("")) {
+                if (itmDetailss != null) {
+                    for (Items itm : itmDetailss) {
 
-                for (Items itm : itmDetailss) {
- 
-                    if (itm.getItem().equals(item.getText().toUpperCase())) {
-                        isProductExist=false;
-                        break;
+                        if (itm.getItem().equals(item.getText().toUpperCase())) {
+                            isProductExist = false;
+                            break;
+                        }
+
                     }
-                    
-
                 }
-                
-                 
-                if(isProductExist) {
-                    
+
+                if (isProductExist) {
+
                     Items itms = new Items(id, item.getText().toUpperCase(), Double.parseDouble(dprice.getText()), Double.parseDouble(sprice.getText()),
                             Double.parseDouble(gAmount.getText()), (String) good_unit1.getSelectedItem());
 
@@ -1686,14 +1680,13 @@ public class Main extends javax.swing.JFrame {
                     itmDetails.add(itms);
 
                     Connection.save();
-           
 
                 } else {
-                    isProductExist=true;
-                    JOptionPane.showMessageDialog(item,"Product is already exist");
-                    
+                    isProductExist = true;
+                    JOptionPane.showMessageDialog(item, "Product is already exist");
+
                 }
-             
+
             } else {
 
                 if (item.getText().equals("")) {
@@ -1715,7 +1708,6 @@ public class Main extends javax.swing.JFrame {
                     gAmountErrorMsg.setVisible(true);
                     gAmountErrorMsg.setText("Product amount can not be empty");
                 }
-
 
             }
 
@@ -1742,12 +1734,11 @@ public class Main extends javax.swing.JFrame {
         dprice.setText(dftm.getValueAt(select, 1).toString());
 
         sprice.setText(dftm.getValueAt(select, 2).toString());
-  
-        String[] splited = dftm.getValueAt(select,4).toString().split("\\s+");
+
+        String[] splited = dftm.getValueAt(select, 4).toString().split("\\s+");
         gAmount.setText(splited[0]);
 
         good_unit1.setSelectedItem(splited[1]);
-        
 
         saveButton.setEnabled(false);
         updateButton.setEnabled(true);
@@ -1782,9 +1773,9 @@ public class Main extends javax.swing.JFrame {
 
                 id1 = 1;
             }
-  
-            if(!ownerName.getText().equals("")&&!ownerId.getText().equals("")&&!paymentAmount.getText().equals("")&&!goodAmount.getText().equals("")){
-           
+
+            if (!ownerName.getText().equals("") && !ownerId.getText().equals("") && !paymentAmount.getText().equals("") && !goodAmount.getText().equals("")) {
+
                 String d1 = ((JTextField) bill_date.getDateEditor().getUiComponent()).getText();
 
                 SellShopModel sellShopModel = new SellShopModel(id1, ownerName.getText(),
@@ -1792,7 +1783,7 @@ public class Main extends javax.swing.JFrame {
                         Long.parseLong(paymentAmount.getText()),
                         d1,
                         (String) goodItem.getSelectedItem(),
-                        Long.parseLong(goodAmount.getText()), (String) good_unit.getSelectedItem());
+                        Double.parseDouble(goodAmount.getText()), (String) good_unit.getSelectedItem());
 
                 ArrayList<SellShopModel> itmDetails = (ArrayList<SellShopModel>) db.getList("ShopItems");
 
@@ -1803,8 +1794,29 @@ public class Main extends javax.swing.JFrame {
                 itmDetails.add(sellShopModel);
                 clearModel();
                 Connection.save();
-              
-            }else {
+                Database dbs = Connection.openConnection(myDb);
+
+                ArrayList<Items> itmDetailss = (ArrayList<Items>) dbs.getList("Items");
+
+                if (itmDetailss != null) {
+                    for (Items item : itmDetailss) {
+                        if (item.getItem().toLowerCase().equals(goodItem.getSelectedItem().toString().toLowerCase())) {
+
+                            Items itms = new Items(item.getId(), item.getItem(), Double.parseDouble(dprice.getText()), Double.parseDouble(sprice.getText()),
+                                    (item.getgAmount()) - Double.parseDouble(goodAmount.getText()), (String) good_unit1.getSelectedItem());
+                            if (itmDetails == null) {
+                                itmDetails = new ArrayList<>();
+                                db.addList("Items", itmDetails);
+                            }
+                            itmDetailss.add(itms);
+
+                            Connection.save();
+
+                        }
+                    }
+                }
+
+            } else {
 
                 if (ownerName.getText().equals("")) {
                     ownerNameErrorMsg.setVisible(true);
@@ -1820,12 +1832,11 @@ public class Main extends javax.swing.JFrame {
                     paymentAmountErrorMsg.setVisible(true);
                     paymentAmountErrorMsg.setText("payment amount can not be empty");
                 }
-                
-                  if (goodAmount.getText().equals("")) {
+
+                if (goodAmount.getText().equals("")) {
                     goodAmountErrorMsg.setVisible(true);
                     goodAmountErrorMsg.setText("good amount can not be empty");
                 }
-
 
             }
 
@@ -1973,17 +1984,15 @@ public class Main extends javax.swing.JFrame {
 
                         }
 
-                        
                         todayRevenue = todayRevenue + unitSalePrice * item.getGoodAmount();
                         todayCost = todayCost + unitPerchasePrice * item.getGoodAmount();
                         todayProfitFromCheck = todayRevenue - todayCost;
 
                         dftm2.addRow(new Object[]{item.getGoodName(), item.getGoodAmount(),
-                            item.getDate(), todayProfitFromCheck+"(CHECk)"});
+                            item.getDate(), todayProfitFromCheck + "(CHECk)"});
 
-                    } else if(date2.compareTo(date21) == 0 && item.getPaymentMethod().equals("Cash")) {
-                        
-                        
+                    } else if (date2.compareTo(date21) == 0 && item.getPaymentMethod().equals("Cash")) {
+
                         try {
                             Database dbt = Connection.openConnection(myDb);
 
@@ -2002,32 +2011,29 @@ public class Main extends javax.swing.JFrame {
 
                         }
 
-                        
                         todayRevenue = todayRevenue + unitSalePrice * item.getGoodAmount();
                         todayCost = todayCost + unitPerchasePrice * item.getGoodAmount();
                         todayProfitFromCash = todayRevenue - todayCost;
 
                         dftm2.addRow(new Object[]{item.getGoodName(), item.getGoodAmount(),
-                            item.getDate(), todayProfitFromCash+"(CASH)"});
-                        
-                        
-                        
+                            item.getDate(), todayProfitFromCash + "(CASH)"});
+
                         System.out.println("not work" + reportDateChooser.getDate().compareTo(date21));
                     }
 
                     totalProfitFromCheck = totalProfitFromCheck + todayProfitFromCheck;
                     tprofitFromCheck.setText(Double.toString(totalProfitFromCheck));
-                    
+
                     totalProfitFromCash = totalProfitFromCash + todayProfitFromCash;
                     tprofitFromCash.setText(Double.toString(totalProfitFromCash));
-                    
+
                     todayRevenue = 0;
                     todayCost = 0;
                     todayProfitFromCheck = 0;
-                    todayProfitFromCash=0;
+                    todayProfitFromCash = 0;
                 }
                 totalProfitFromCheck = 0;
-                totalProfitFromCash=0;
+                totalProfitFromCash = 0;
             }
 
         } catch (IOException ex) {

@@ -349,7 +349,7 @@ public class SellToShop extends javax.swing.JFrame{
                 Long.parseLong(paymentAmount.getText()),
                 d1,
                 (String) paymentMethod.getSelectedItem(),
-                Long.parseLong(goodAmount.getText()), (String) good_unit.getSelectedItem());
+                Double.parseDouble(goodAmount.getText()), (String) good_unit.getSelectedItem());
 
         try {
 
